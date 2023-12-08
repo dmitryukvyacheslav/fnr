@@ -1,11 +1,26 @@
-// fnr.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include "Model.h"
 
-int main()
+int main(int argc, char* argv[]) 
 {
-    std::cout << "Hello World!\n";
+    if (argc != 1 && argc != 3) {
+        std::cout << "Usage: fnr.exe <input=input.txt> <output=output.txt>\n";
+        return 0;
+    }
+    Model* mdl;
+    argc == 3 ?
+        mdl = new Model(
+            std::string(argv[1]), 
+            std::string(argv[2])
+        ):
+        mdl = new Model(
+            std::string("./input.txt"), 
+            std::string("./output.txt")
+        );
+    mdl->write();
+    return 0;
+    
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

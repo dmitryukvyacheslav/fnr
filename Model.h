@@ -1,47 +1,29 @@
 ﻿#pragma once
 #include <vector>
+#include <string>
+#include <fstream>
+#include "Fox.h"
+#include <algorithm>
+
+#include "Rabbit.h"
 class Model
 {
-	int width;
-	int height;
-	int steps;
+	std::string inputfile;
+	std::string outputfile;
 
-	// геттер и сеттер на эти поля
-	vector<Fox> masF;
-	vector<Rabbit> masR;
-	int** mas;
-
-	// Метод добавления зайцев
-	void addR(int x, int y, int s, int dir)
-	{
-		masR.push_back(Rabbit(x, y, s, dir));
-		mas[x][y] += 1;
-	}
-
-	// Метод добавления лис
-	void addF(int x, int y, int s, int dir)
-	{
-		masF.push_back(Rabbit(x, y, s, dir));
-		mas[x][y] += -1;
-	}
-	
-	// Метод Шаг
-	void step() {
-		//Движение зайцев
-		//Движение лис и питание
-		//Смена направления
-		//Старение
-		//Размножение
-		//Вымирание
-	}
-	
-	// Метод вывода результата(выходной файл)
-	void write() {
-	}
-	
-	// Деструктор
-	~Model() {
-
-	}
+	int m_width;
+	int m_height;
+	int m_steps;
+	int m_nFoxes, m_nRabbits;
+	// геттер и сеттер???? на эти поля
+	std::vector<Fox> masF;
+	std::vector<Rabbit> masR;
+public:
+	Model(std::string infile, std::string outfile);
+	void addR(int x, int y, int s, int dir);
+	void addF(int x, int y, int s, int dir);
+	void step();
+	void write();
+	~Model();
 };
 
