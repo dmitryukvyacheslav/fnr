@@ -113,22 +113,27 @@ void Model::step() {
 			}
 		}
 	}
-	//Размножение и смерть
-	for (int i = 0; i < masF.size(); i++) {
-		if (masF.at(i).getSaturation() >= 2) {
+	// Размножение и смерть
+	for (int i = 0; i < masF.size(); i++)
+	{
+		if (masF.at(i).getSaturation() >= 2)
+		{
 			masF.at(i).resetSaturation();
-			masF.push_back(masF.at(i));
+			addF(masF.at(i)); // i'm so wrong here
 		}
-		if (masF.at(i).isDying()) {
+		if (masF.at(i).isDying())
+		{
 			masF.erase(masF.begin() + i);
 			i--;
 		}
 	}
-	//Размножение и смерть
-	for (int i = 0; i < masR.size(); i++) {
-		if (masR.at(i).canReproduce()) 
-			masR.push_back(masR.at(i));
-		if (masR.at(i).isDying()) {
+	// Размножение и смерть
+	for (int i = 0; i < masR.size(); i++)
+	{
+		if (masR.at(i).canReproduce())
+			addR(masR.at(i));
+		if (masR.at(i).isDying())
+		{
 			masR.erase(masR.begin() + i);
 			i--;
 		}
