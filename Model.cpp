@@ -68,8 +68,8 @@ void Model::step() {
 	for (Rabbit& rabbit : masR) {
 		rabbit.move();
 		auto pos = rabbit.getPosition();
-		if (pos.x > m_width) pos.x %= (m_width-1);
-		if (pos.y > m_width) pos.y %= (m_height-1);
+		if (pos.x == m_width) pos.x %= (m_width);
+		if (pos.y == m_height) pos.y %= (m_height);
 		if (pos.x < 0) pos.x = m_width+pos.x;
 		if (pos.y < 0) pos.y = m_height+pos.y;
 		rabbit.setPosition(pos);
@@ -125,7 +125,7 @@ void Model::step() {
 		}
 	}
 	//Размножение и смерть
-	for (int i = 0; i < masF.size(); i++) {
+	for (int i = 0; i < masR.size(); i++) {
 		if (masR.at(i).canReproduce()) 
 			masR.push_back(masR.at(i));
 		if (masR.at(i).isDying()) {
